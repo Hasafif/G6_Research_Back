@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% block title %}
+<title>Sign Up Page</title>
+{% endblock %} {% block main %}
+<h1>Signup</h1>
+<form action="signup_proc/" method="post">
+  {% csrf_token %}
+  <label for="usr">Username:</label>
+  <input
+    name="usr"
+    placeholder="Username"
+    type="text"
+    required
+  />
+  <label for="email">Email:</label>
+  <input
+    name="email"
+    placeholder="Email"
+    type="email"
+    required
+  />
+  <label for="pwd">Password:</label>
+  <input name="pwd" type="password" placeholder="Password" required />
+  <label for="pwdC">Confirm Password:</label>
+  <input
+    placeholder="Confirm Password"
+    name="pwdC"
+    type="password"
+    required
+  />
+  <button type="submit">Sign up</button>
+  <p>Already have an account?<a href="login/">Log in</a>.</p>
+  <a href="{% url 'social:begin' 'google-oauth2' %}">Sign Up With Google</a>
+</form>
+{% endblock %}

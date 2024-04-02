@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<title>Bad Request</title>
+<body>
+
+<h1>Error 400</h1>
+
+<h2>You have sent a bad request</h2>
+{% if user.is_authenticated %}
+<a href="/">Go back to dashboard</a>
+{% else %}
+<a href="login/">Go to login page</a>
+{% endif %}
+</body>
+</html>

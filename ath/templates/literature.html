@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block title %}
+<title>Login Page</title>
+{% endblock %} {% block main %}
+<h1>Login</h1>
+<form action="login_proc/" method="post">
+  {% csrf_token %}
+  <label for="usr">Title</label>
+  <input name="usr" type="text" placeholder="Username" required />
+  <label for="pwd">Password:</label>
+  <input name="pwd" placeholder="Password" type="password" required />
+  <button type="submit">generate</button>
+  <p>Don't have an account?<a href="signup/">Sign up</a>.</p>
+  <br />
+</form>
+
+<a href="{% url 'social:begin' 'google-oauth2' %}">Login With Google</a>
+{% endblock %}

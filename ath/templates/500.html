@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<title>Server Error</title>
+<body>
+
+<h1>Error 500</h1>
+
+<h2>Something went wrong with our server, stay close we will fix it!</h2>
+{% if user.is_authenticated %}
+<a href="/">Go back to dashboard</a>
+{% else %}
+<a href="login/">Go to login page</a>
+{% endif %}
+</body>
+</html>

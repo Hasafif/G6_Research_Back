@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block title %}
+    <title>Dashboard</title>
+    {% endblock %}
+  </head>
+  <body>
+    {% if message %}
+      <h4>{{message}}</h4>
+    {% endif %}
+    {% block main %}
+    <h2>Dashboard</h2>
+    {% if user.is_authenticated %}
+    <h3>Welcome user: {{user.username}}!</h3>
+    <a href="logout">Log out</a>
+    {% else %}
+    <a href="login/">Log in</a>
+    <a href="signup/">Sign up</a>
+    {% endif %}
+    {% endblock %}
+  </body>
+</html>
