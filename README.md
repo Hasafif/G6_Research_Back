@@ -3,6 +3,7 @@ This project is the latest version of chatg6.ai, an AI-powered scientific resear
 - Literature reviews generation
 - Academic statements auto-completion
 - References management
+- Plagiarism Checking
 - Chat with documents
 - Storing, sharing and managing options for projects
   
