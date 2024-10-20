@@ -39,8 +39,10 @@ def search_in_semantic(query: str, max_results: int = 40) -> dict:
     }
     
     # Make the GET request
-    response = requests.get('https://api.semanticscholar.org/graph/v1/paper/search', params=params, headers=headers)
-    
+    try:
+         response = requests.get('https://api.semanticscholar.org/graph/v1/paper/search', params=params, headers=headers)
+    except:
+          response = requests.get('https://api.semanticscholar.org/graph/v1/paper/search', params=params, headers={})
     # Check if the request was successful
     if response.status_code == 200:
         res = response.json()
@@ -49,7 +51,10 @@ def search_in_semantic(query: str, max_results: int = 40) -> dict:
         data = {
             'ids': Ids
                 }
-        response = requests.post('https://api.semanticscholar.org/graph/v1/paper/batch?fields=title,year,authors,openAccessPdf,abstract', json=data, headers=headers)
+        try:
+             response = requests.post('https://api.semanticscholar.org/graph/v1/paper/batch?fields=title,year,authors,openAccessPdf,abstract', json=data, headers=headers)
+        except:
+             response = requests.post('https://api.semanticscholar.org/graph/v1/paper/batch?fields=title,year,authors,openAccessPdf,abstract', json=data, headers={})
         return response.json()
     else:
         # Handle the error, for example, by raising an exception or returning an error message

@@ -16,3 +16,5 @@ header2 =   {
             }  
 api_url = os.environ.get('API_URL')
 semantic_api_key = os.environ.get('semantic_api_key')
+#webhook endpoint for plagiarism
+webhook_endpoint = os.environ.get('webhook_endpoint')

@@ -61,34 +61,49 @@ def ai_detection(text: str):
                 return 'Your text is very short!' 
 
 # Use the following function to scan text for plagiarism
-
-def plagiarism_detection(text:str):
-    a = authenticate()
-    if (a == 'error'):
-       return {'message':'Try again later'}
-    else:
-        auth_token = a
-        txt = text.strip()
-        BASE64_FILE_CONTENT = base64.b64encode(txt.encode()).decode('utf8')  
-        FILENAME = "G6Scan.txt"
+def detect(text:str,token:str):
+      auth_token = token
+      txt = text.strip()
+      BASE64_FILE_CONTENT = base64.b64encode(txt.encode()).decode('utf8')  
+      FILENAME = "hello.txt"
         ## Random scan ID
-        scan_id = random.randint(100, 100000) 
+      scan_id = random.randint(100, 100000) 
 
         ## File Submission Object
-        file_submission = FileDocument(BASE64_FILE_CONTENT, FILENAME)
+      file_submission = FileDocument(BASE64_FILE_CONTENT, FILENAME)
 
-        #it will be modified soon to listen for webhook requests in accordance with frontend
-        END_POINT = 'https://chatg6.ai/api/utils/reciever/'
-
-        scan_properties = ScanProperties(END_POINT)
+      #END_POINT = 'https://chatg6.ai/api/utils/reciever/'
+      #END_POINT = 'https://2fd2-89-38-99-102.ngrok-free.app'
+      END_POINT = webhook_endpoint
+      scan_properties = ScanProperties(END_POINT)
 
         ## Scan Properties
-        scan_properties.set_sandbox(False)
-        file_submission.set_properties(scan_properties)
+      scan_properties.set_sandbox(False)
+      file_submission.set_properties(scan_properties)
 
         # File submitting
-        Copyleaks.submit_file(auth_token, scan_id, file_submission) 
-        return {'message':'You will be notified when the scan is done','userId':scan_id}
+      #auth_token = {'access_token': '2A5554C9FD48DA72D0737DE844C980A72C46D59E02170F57C56C6D7A569FEA58', '.issued': '2024-04-04T15:38:58.0714826Z', '.expires': '2024-04-06T15:38:58.0714827Z'}
+      Copyleaks.submit_file(auth_token, scan_id, file_submission) 
+      return {'message':'You will be notified when the scan is done','token':token,'userId':scan_id}
+def plagiarism_detection(text:str,token:str):
+    if (token==''):
+       a = authenticate()
+       print(a)
+       if (a == 'error'):
+          return 'Try again later'
+       else:
+         s = detect(text,a)
+    else:
+      try:
+         s = detect(text,token)
+      except:
+            a = authenticate()
+            print(a)
+            if (a == 'error'):
+                return 'Try again later'
+            else:
+                 s = detect(text,a)
+    return s
 
 
 

@@ -73,10 +73,11 @@ class Documentation(APIView):
 def check_with_retry(self, request, *args, **kwargs):
     data = JSONParser().parse(request)
     text = data.get('text', None)
-    status  = plagiarism_detection(text)
+    token = data.get('token', None)
+    status  = plagiarism_detection(text,token)
     return status
 class Plagiarism_detector(APIView):
-    ''' req: (text:str)
+    ''' req: (text:str), (token:str)
       (res,201): status:str,check_result:json via webhook '''
     @csrf_exempt
     def post(self, request):

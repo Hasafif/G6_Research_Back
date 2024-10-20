@@ -7,7 +7,7 @@ import re
 from .semantic import *
 
 
-OpenAI_key = os.environ.get('open_ai_key')
+OpenAI_key = open_ai_key
 
 
 llm = ChatOpenAI(model='gpt-4', api_key=OpenAI_key,temperature=0)
