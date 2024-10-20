@@ -12,4 +12,5 @@ Many techniques were used in platform development:
 - Next.js and Tailwindcss for Front-end (https://github.com/Hasafif/G6_Research_Front)
 - Django for Back-end (This Repositiory)
 
-  # G6 Research Platform by G6 Team
+﻿# Research Platform By G6 Team
+# G6_Research_Back
